@@ -45,7 +45,7 @@ namespace Console_CRUD
         {
             try
             {
-                var showall =$"select * from Busdetails";
+                var showall =$" select * from Busdetails";
                 con.Open();
                 var match = con.Query<Busdetails>(showall);
                 con.Close();
@@ -65,7 +65,7 @@ namespace Console_CRUD
         {
             try
             {
-                var update = $"update set '{start}','{end}',{far},{ticket} where {id};";
+                var update = $"exec SPupdate '{start}' '{end}' {far} {ticket}  {id};";
                 Console.WriteLine("Updated Successfully");
                 con.Open();
                 con.Execute(update);
@@ -85,9 +85,8 @@ namespace Console_CRUD
         {
             try
             {
-                var delete = $"exec SPremove '{busname}'";
-                Console.WriteLine("Deleted Sucessfully");
-                con.Open();
+                var delete = $" exec SPremove '{busname}'";
+                    con.Open();
                 con.Execute(delete);
                 con.Close();
             }

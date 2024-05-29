@@ -83,7 +83,7 @@ namespace Console_CRUD
             {
                 throw;
             }
-            catch (Exception)
+            catch(Exception)
             {
                 throw;
             }
@@ -92,19 +92,80 @@ namespace Console_CRUD
         }
         public void SPselectall()
         {
+            try
+            {
+                var showall = instance.SPselectall();
+                if(showall==null||showall.Count()==0)
+                {
+                    Console.WriteLine("No record found");
+                    return;
+                }
+                Console.WriteLine($"      {"BusID"}    |     {"BusName"}     |      {"DriverMobilenumber"}      |      {"StartPoint"}      |      {"Destination"}        |     {"Fair"}      |        {"NoofPassenger"}|" +
+                    $"");
+                foreach (var record in showall)
+                {
+                    Console.WriteLine($"{record.BusID} |   {record.BusName}  |    {record.DriverMobilenumber}   |    {record.StartPoint}   |    {record.Destination}     |  {record.Fair}    |    {record.NoofPassenger}|");
+                }
+            }
+            catch(SqlException)
+            {
+                throw;
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+            
 
         }
         public void SPupdate()
         {
-
+            Console.WriteLine("Enter the ID:");
+            int a = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter the StartPoint:");
+            string b = Console.ReadLine();
+            Console.WriteLine("Enter the Destination:");
+            string c = Console.ReadLine();
+            Console.WriteLine("Enter the Fair:");
+            int d = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter No.of.Passenger:");
+            int e = Convert.ToInt32(Console.ReadLine());
+            instance.SPupdate( a,b,c,d,e);
+            
         }
         public void SPsearch()
         {
+            Console.WriteLine("Enter the Bus Name:");
+            var search = Console.ReadLine();
+            var any=instance.SPsearch(search);
+            if (search.Any())
+            {
+                
+                Console.WriteLine($"      {"BusID"}    |     {"BusName"}     |      {"DriverMobilenumber"}      |      {"StartPoint"}      |      {"Destination"}        |     {"Fair"}      |        {"NoofPassenger"}|" );
+                foreach (var record in any)
+                { 
+                    Console.WriteLine($"  {record.BusID} |    {record.BusName}  |  {record.DriverMobilenumber} |  {record.StartPoint} |  {record.Destination} |  {record.Fair} |  {record.NoofPassenger}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No Details Found");
+            }
 
         }
         public void SPremove()
         {
-
+            Console.WriteLine("Enter the BusName:");
+            string bus = Console.ReadLine();
+            if(bus.Any())
+            {
+                instance.SPremove(bus);
+                Console.WriteLine("Bus Details Removed");
+            }
+            else
+            {
+                Console.WriteLine("No Details found");
+            }
         }
 
 
