@@ -120,17 +120,28 @@ namespace Console_CRUD
         }
         public void SPupdate()
         {
-            Console.WriteLine("Enter the ID:");
-            int a = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter the StartPoint:");
-            string b = Console.ReadLine();
-            Console.WriteLine("Enter the Destination:");
-            string c = Console.ReadLine();
-            Console.WriteLine("Enter the Fair:");
-            int d = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter No.of.Passenger:");
-            int e = Convert.ToInt32(Console.ReadLine());
-            instance.SPupdate( a,b,c,d,e);
+            try
+            {
+                Console.WriteLine("Enter the ID:");
+                int a = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter the StartPoint:");
+                string b = Console.ReadLine();
+                Console.WriteLine("Enter the Destination:");
+                string c = Console.ReadLine();
+                Console.WriteLine("Enter the Fair:");
+                int d = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter No.of.Passenger:");
+                int e = Convert.ToInt32(Console.ReadLine());
+                instance.SPupdate(a, b, c, d, e);
+            }
+            catch(SqlException )
+            {
+                throw;
+            }
+            catch(Exception)
+            {
+                throw;
+            }
             
         }
         public void SPsearch()
