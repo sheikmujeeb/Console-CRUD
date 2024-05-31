@@ -123,20 +123,21 @@ namespace Console_CRUD
             try
             {
                 Console.WriteLine("Enter the ID:");
-                int a = Convert.ToInt32(Console.ReadLine());
+                obj.BusID = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Enter the StartPoint:");
-                string b = Console.ReadLine();
+                obj.StartPoint= Console.ReadLine();
                 Console.WriteLine("Enter the Destination:");
-                string c = Console.ReadLine();
+                obj.Destination= Console.ReadLine();
                 Console.WriteLine("Enter the Fair:");
-                int d = Convert.ToInt32(Console.ReadLine());
+                obj.Fair= Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Enter No.of.Passenger:");
-                int e = Convert.ToInt32(Console.ReadLine());
-                instance.SPupdate(a, b, c, d, e);
+                obj.NoofPassenger= Convert.ToInt32(Console.ReadLine());
+
+                instance.SPupdate(obj);
             }
-            catch(SqlException )
+            catch(SqlException ex)
             {
-                throw;
+                Console.WriteLine(ex.Message);
             }
             catch(Exception)
             {

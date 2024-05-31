@@ -61,15 +61,16 @@ namespace Console_CRUD
             }
 
         }
-        public void SPupdate(int id, string start, string end, int far, int ticket)
+        public void SPupdate(Busdetails bus)
         {
             try
             {
-                var update = $"exec SPupdate '{start}' '{end}' {far} {ticket}  {id};";
+                var update = ($"exec SPupdate {bus.BusID},'{bus.StartPoint}','{bus.Destination}',{bus.Fair},{bus.NoofPassenger}  ");
                 Console.WriteLine("Updated Successfully");
                 con.Open();
                 con.Execute(update);
                 con.Close();
+                SPselectall();
 
             }
             catch (SqlException ex)
