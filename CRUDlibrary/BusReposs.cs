@@ -27,7 +27,7 @@ namespace Console_CRUD
         {
             try
             {
-                var signup = $"insert into Busdetails values ('{obj.BusName}',{obj.DriverMobilenumber},'{obj.StartPoint}','{obj.Destination}',{obj.Fair},{obj.NoofPassenger})";
+                var signup = ($"exec BusTicket  '{obj.BusName}',{obj.DriverMobilenumber},'{obj.StartPoint}','{obj.Destination}',{obj.Fair},{obj.NoofPassenger}");
                 con.Open();
                 con.Execute(signup);
                 con.Close();
